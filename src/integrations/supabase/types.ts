@@ -14,7 +14,71 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      daily_supports: {
+        Row: {
+          created_at: string
+          id: string
+          support_date: string
+          team_name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          support_date: string
+          team_name: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          support_date?: string
+          team_name?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_supports_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_initials: string
+          country: string
+          created_at: string
+          display_name: string
+          favorite_team: string
+          id: string
+          onboarding_completed: boolean
+          updated_at: string
+        }
+        Insert: {
+          avatar_initials: string
+          country: string
+          created_at?: string
+          display_name: string
+          favorite_team: string
+          id: string
+          onboarding_completed?: boolean
+          updated_at?: string
+        }
+        Update: {
+          avatar_initials?: string
+          country?: string
+          created_at?: string
+          display_name?: string
+          favorite_team?: string
+          id?: string
+          onboarding_completed?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
